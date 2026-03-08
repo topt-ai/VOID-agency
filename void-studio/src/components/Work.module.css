@@ -1,0 +1,130 @@
+.work {
+  padding: 120px 24px;
+  background-color: var(--black);
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 80px;
+  border-bottom: 1px solid var(--gray-2);
+  padding-bottom: 24px;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 96px);
+  color: var(--white);
+  font-weight: 400;
+}
+
+.heading i {
+  font-style: italic;
+}
+
+.counter {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--gray-mid);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.card {
+  position: relative;
+  background-color: var(--gray-1);
+  overflow: hidden;
+  outline: 1px solid transparent;
+  transition: outline 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.card.large {
+  aspect-ratio: 4 / 3;
+}
+
+.card.small {
+  aspect-ratio: 3 / 4;
+  margin-top: 120px; /* Stagger effect */
+}
+
+.card:hover {
+  outline: 1px solid var(--white);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(8, 8, 8, 0.9) 0%,
+    rgba(8, 8, 8, 0) 50%
+  );
+  transform: translateY(100%);
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: flex-end;
+  padding: 32px;
+}
+
+.card:hover .overlay {
+  transform: translateY(0);
+}
+
+.details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.projectName {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-style: italic;
+  color: var(--white);
+  font-weight: 400;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--gray-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-top: 1px solid var(--gray-2);
+  padding-top: 12px;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card.small {
+    margin-top: 0;
+  }
+}
